@@ -1,31 +1,10 @@
-// const mineflayer = require('mineflayer') // eslint-disable-line
-// /**
-//  * @param {mineflayer.Bot} bot // to enable intellisense
-//  */
-
 const mw = require('nodemw');
 const bot = new mw({
-  protocol: 'https', // Wikipedia now enforces HTTPS
-  server: 'wiki.gm4.co', // host name of MediaWiki-powered site
-  path: '/', // path to api.php script
-  debug: false, // is more verbose when set to true
+  protocol: 'https',
+  server: 'wiki.gm4.co',
+  path: '/',
+  debug: false,
 });
-
-// bot.getArticle(results[0].title, function (err, data) {
-//   // error handling
-//   if (err) {
-//     console.error(err);
-//     return;
-//   }
-//   bot.parse(data, results[0].title, function (err, data) {
-//     // error handling
-//     if (err) {
-//       console.error(err);
-//       return;
-//     }
-//     console.log(data);
-//   });
-// });
 
 module.exports = {
   name: 'GM4Wiki',
@@ -44,12 +23,9 @@ module.exports = {
         bot.search(interaction.options[0].value, (err, res) => {
           if (res[0]) {
             const title = res[0].title;
-            // bot.getArticle(title, (err, res) => {
-            //   if (res.includes('#REDIRECT')) title = res.match(/\[\[.*(?=]])/)[0].slice(2);
-            // });
             return interaction.reply('https://wiki.gm4.co/wiki/' + encodeURIComponent(title.replace(/ /g, '_')));
           }
-          return interaction.reply('404: Page Not Found');
+          return interaction.reply('404: No matching wiki page Not Found');
         });
       },
     },
