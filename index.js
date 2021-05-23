@@ -55,7 +55,8 @@ client.on('interaction', interaction => {
 client.once('ready', () => {
   // Creating a global command
   // client.commands.forEach((commandData) => client.application.commands.create(commandData));
-  client.commands.forEach((commandData) => client.guilds.cache.get('736091686094110752').commands.create(commandData));
+  // Creating command for one server (updates faster)
+  client.commands.forEach((commandData) => client.guilds.cache.get(CONFIG.serverID).commands.create(commandData));
 });
 
 
